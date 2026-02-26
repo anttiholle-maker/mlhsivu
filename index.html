@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minun Kuvagalleriani</title>
+    <title>MLH Welho galleria</title>
     <style>
         * {
             margin: 0;
@@ -74,7 +74,7 @@
     </style>
 </head>
 <body>
-    <h1>📸 Minun Kuvagalleriani</h1>
+    <h1>📸 MLH Welho galleria</h1>
     
     <div class="galleria" id="galleria"></div>
     
@@ -82,7 +82,6 @@
         const githubUser = 'anttiholle-maker';
         const repoName = 'mlhsivu';
         
-        // Lista kaikista kuvatiedostonimistä (tarkat nimet GitHubissa!)
         const kuvaNimet = [
             'Mlh1.jpeg', 'Mlh2.jpeg', 'Mlh3.jpeg', 'Mlh4.jpeg', 'Mlh5.jpeg',
             'Mlh6.jpeg', 'Mlh7.jpeg', 'Mlh8.jpeg', 'Mlh9.jpeg', 'Mlh10.jpeg',
@@ -94,7 +93,6 @@
             'Mlh36.jpeg'
         ];
         
-        // Luo kuvat oikeassa järjestyksessä (1-36)
         kuvaNimet.forEach((nimi, index) => {
             const kuvaDiv = document.createElement('div');
             kuvaDiv.className = 'kuva';
