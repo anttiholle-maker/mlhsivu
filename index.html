@@ -79,16 +79,15 @@
     <div class="galleria" id="galleria"></div>
     
     <script>
-        // KORVAA NÄMÄ OMAILLA TIEDOILLASI!
-        const githubUser = 'KAYTTAJANIMI';  // ← GitHub-käyttäjänimesi
-        const repoName = 'oma-sivuni';       // ← Repositoryn nimi
+        const githubUser = 'anttholle-maker';
+        const repoName = 'mlhsivu';
         
         // Luo 36 kuvaa: mlh1.jpeg - mlh36.jpeg
         for(let i = 1; i <= 36; i++) {
             const kuvaDiv = document.createElement('div');
             kuvaDiv.className = 'kuva';
             
-            // Oikea tiedostopolku: kuvat/mlh1.jpeg, kuvat/mlh2.jpeg...
+            // GitHub Raw -osoite
             const kuvaUrl = `https://raw.githubusercontent.com/${githubUser}/${repoName}/main/kuvat/mlh${i}.jpeg`;
             
             kuvaDiv.innerHTML = `
