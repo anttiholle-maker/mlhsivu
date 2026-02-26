@@ -79,19 +79,19 @@
     <div class="galleria" id="galleria"></div>
     
     <script>
-        const githubUser = 'antti-holle-maker';
+        const githubUser = 'anttiholle-maker';  // Korjattu: antti, ei anttholle
         const repoName = 'mlhsivu';
         
-        // Luo 36 kuvaa: mlh1.jpeg - mlh36.jpeg
+        // Luo 36 kuvaa: Mlh1.jpeg - Mlh36.jpeg (isot M ja l!)
         for(let i = 1; i <= 36; i++) {
             const kuvaDiv = document.createElement('div');
             kuvaDiv.className = 'kuva';
             
-            // GitHub Raw -osoite
-            const kuvaUrl = `https://raw.githubusercontent.com/${githubUser}/${repoName}/main/kuvat/mlh${i}.jpeg`;
+            // Korjattu: Mlh (iso M ja l), ei mlh
+            const kuvaUrl = `https://raw.githubusercontent.com/${githubUser}/${repoName}/main/kuvat/Mlh${i}.jpeg`;
             
             kuvaDiv.innerHTML = `
-                <img src="${kuvaUrl}" alt="Kuva ${i}" onerror="this.parentElement.innerHTML='<div class=virhe>❌ mlh${i}.jpeg ei löydy</div>'">
+                <img src="${kuvaUrl}" alt="Kuva ${i}" onerror="this.parentElement.innerHTML='<div class=virhe>❌ Mlh${i}.jpeg ei löydy</div>'">
                 <p>Kuva ${i}</p>
             `;
             
