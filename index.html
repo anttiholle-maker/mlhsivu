@@ -82,21 +82,32 @@
         const githubUser = 'anttiholle-maker';
         const repoName = 'mlhsivu';
         
-        // Luo 36 kuvaa: Mlh1.jpeg - Mlh36.jpeg
-        for(let i = 1; i <= 36; i++) {
+        // Lista kaikista kuvatiedostonimistä (tarkat nimet GitHubissa!)
+        const kuvaNimet = [
+            'Mlh1.jpeg', 'Mlh2.jpeg', 'Mlh3.jpeg', 'Mlh4.jpeg', 'Mlh5.jpeg',
+            'Mlh6.jpeg', 'Mlh7.jpeg', 'Mlh8.jpeg', 'Mlh9.jpeg', 'Mlh10.jpeg',
+            'Mlh11.jpeg', 'Mlh12.jpeg', 'Mlh13.jpeg', 'Mlh14.jpeg', 'Mlh15.jpeg',
+            'Mlh16.jpeg', 'Mlh17.jpeg', 'Mlh18.jpeg', 'Mlh19.jpeg', 'Mlh20.jpeg',
+            'Mlh21.jpeg', 'Mlh22.jpeg', 'Mlh23.jpeg', 'Mlh24.jpeg', 'Mlh25.jpeg',
+            'Mlh26.jpeg', 'Mlh27.jpeg', 'Mlh28.jpeg', 'Mlh29.jpeg', 'Mlh30.jpeg',
+            'Mlh31.jpeg', 'Mlh32.jpeg', 'Mlh33.jpeg', 'Mlh34.jpeg', 'Mlh35.jpeg',
+            'Mlh36.jpeg'
+        ];
+        
+        // Luo kuvat oikeassa järjestyksessä (1-36)
+        kuvaNimet.forEach((nimi, index) => {
             const kuvaDiv = document.createElement('div');
             kuvaDiv.className = 'kuva';
             
-            // Oikea nimi: Mlh (iso M ja l) + .jpeg
-            const kuvaUrl = `https://raw.githubusercontent.com/${githubUser}/${repoName}/main/kuvat/Mlh${i}.jpeg`;
+            const kuvaUrl = `https://raw.githubusercontent.com/${githubUser}/${repoName}/main/kuvat/${nimi}`;
             
             kuvaDiv.innerHTML = `
-                <img src="${kuvaUrl}" alt="Kuva ${i}" onerror="this.parentElement.innerHTML='<div class=virhe>❌ Mlh${i}.jpeg ei löydy</div>'">
-                <p>Kuva ${i}</p>
+                <img src="${kuvaUrl}" alt="Kuva ${index + 1}" onerror="this.parentElement.innerHTML='<div class=virhe>❌ ${nimi} ei löydy</div>'">
+                <p>Kuva ${index + 1}</p>
             `;
             
             document.getElementById('galleria').appendChild(kuvaDiv);
-        }
+        });
     </script>
 </body>
 </html>
