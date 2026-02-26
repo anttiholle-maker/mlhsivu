@@ -59,6 +59,18 @@
             color: #333;
             font-weight: 500;
         }
+        
+        .virhe {
+            background: #ffebee;
+            color: #c62828;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     </style>
 </head>
 <body>
@@ -67,14 +79,23 @@
     <div class="galleria" id="galleria"></div>
     
     <script>
-        // Luo 36 kuvaa automaattisesti
+        // KORVAA NÄMÄ OMAILLA TIEDOILLASI!
+        const githubUser = 'KAYTTAJANIMI';  // ← GitHub-käyttäjänimesi
+        const repoName = 'oma-sivuni';       // ← Repositoryn nimi
+        
+        // Luo 36 kuvaa: mlh1.jpeg - mlh36.jpeg
         for(let i = 1; i <= 36; i++) {
             const kuvaDiv = document.createElement('div');
             kuvaDiv.className = 'kuva';
+            
+            // Oikea tiedostopolku: kuvat/mlh1.jpeg, kuvat/mlh2.jpeg...
+            const kuvaUrl = `https://raw.githubusercontent.com/${githubUser}/${repoName}/main/kuvat/mlh${i}.jpeg`;
+            
             kuvaDiv.innerHTML = `
-                <img src="kuvat/kuva${i}.jpg" alt="Kuva ${i}" onerror="this.src='https://via.placeholder.com/300x220?text=Kuva+${i}'">
+                <img src="${kuvaUrl}" alt="Kuva ${i}" onerror="this.parentElement.innerHTML='<div class=virhe>❌ mlh${i}.jpeg ei löydy</div>'">
                 <p>Kuva ${i}</p>
             `;
+            
             document.getElementById('galleria').appendChild(kuvaDiv);
         }
     </script>
