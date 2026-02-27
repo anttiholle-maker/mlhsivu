@@ -77,6 +77,17 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
         
+        /* CV-nappi erottuu muista */
+        .cv-nappi {
+            background: rgba(255,215,0,0.3) !important;
+            border-color: rgba(255,215,0,0.5) !important;
+            font-weight: bold;
+        }
+        
+        .cv-nappi:hover {
+            background: rgba(255,215,0,0.5) !important;
+        }
+        
         .galleria {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -293,13 +304,16 @@
         </p>
         <div class="linkit">
             <a href="https://www.kuukkeli.com/paikallisia-uutisia/taiteilija-marjaleena-mlh-holopaisen-muistolle-6.153.29378.83f9506578" target="_blank">
-                📰 Kuukkeli - Muistokirjoitus
+                Kuukkeli - Muistokirjoitus
             </a>
             <a href="https://www.ts.fi/a/1074058169" target="_blank">
-                📰 Turun Sanomat
+                Turun Sanomat
             </a>
             <a href="https://www.kuukkeli.com/paikallisia-uutisia/velhotaulut-etsivat-ostajaa-6.153.28332.5af217dc29" target="_blank">
-                📰 Kuukkeli
+                Kuukkeli
+            </a>
+            <a href="cv.pdf" target="_blank" class="cv-nappi">
+                Lataa CV (PDF)
             </a>
         </div>
     </div>
@@ -314,8 +328,8 @@
             <div>kertaa</div>
         </div>
         <div class="tilastot">
-            <span>🖼️ Kuvia: 36</span>
-            <span>📅 Päivitetty: 27.2.2026</span>
+            <span>Kuvia: 36</span>
+            <span>Päivitetty: 27.2.2026</span>
         </div>
     </div>
     
@@ -367,7 +381,7 @@
             const kuvaUrl = `https://raw.githubusercontent.com/${githubUser}/${repoName}/main/kuvat/${nimi}`;
             
             kuvaDiv.innerHTML = `
-                <img src="${kuvaUrl}" alt="Kuva ${index + 1}" onerror="this.parentElement.innerHTML='<div class=virhe>❌ ${nimi} ei löydy</div>'">
+                <img src="${kuvaUrl}" alt="Kuva ${index + 1}" onerror="this.parentElement.innerHTML='<div class=virhe>${nimi} ei löydy</div>'">
                 <p>Kuva ${index + 1}</p>
             `;
             
