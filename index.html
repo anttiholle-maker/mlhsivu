@@ -77,34 +77,6 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
         
-        /* Tilastot */
-        .tilastot {
-            text-align: center;
-            color: white;
-            margin-bottom: 30px;
-            font-size: 1.1em;
-            opacity: 0.9;
-        }
-        
-        .tilastot span {
-            margin: 0 15px;
-        }
-        
-        /* Kävijälaskuri */
-        .kavijalaskuri {
-            text-align: center;
-            color: white;
-            margin-bottom: 20px;
-            font-size: 1.2em;
-        }
-        
-        .kavijalaskuri .luku {
-            font-size: 2em;
-            font-weight: bold;
-            color: #ffd700;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        
         .galleria {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -150,6 +122,42 @@
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+        
+        /* Sivun alaosan tilastot */
+        .alatiedot {
+            text-align: center;
+            color: white;
+            margin-top: 50px;
+            padding: 30px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            backdrop-filter: blur(10px);
+        }
+        
+        .kavijalaskuri {
+            margin-bottom: 20px;
+        }
+        
+        .kavijalaskuri .luku {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            display: block;
+            margin: 10px 0;
+        }
+        
+        .tilastot {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .tilastot span {
+            margin: 0 15px;
         }
         
         /* Lightbox-tyylit */
@@ -274,7 +282,7 @@
     </style>
 </head>
 <body>
-    <h1>📸 MLH Galleria</h1>
+    <h1>MLH Galleria</h1>
     
     <!-- Taiteilijan tiedot -->
     <div class="taiteilija">
@@ -296,20 +304,20 @@
         </div>
     </div>
     
-    <!-- Kävijälaskuri -->
-    <div class="kavijalaskuri">
-        <div>Sivua on katsottu</div>
-        <div class="luku" id="kavijat">0</div>
-        <div>kertaa</div>
-    </div>
-    
-    <!-- Tilastot -->
-    <div class="tilastot">
-        <span>🖼️ Kuvia: 36</span>
-        <span>📅 Päivitetty: 27.2.2026</span>
-    </div>
-    
     <div class="galleria" id="galleria"></div>
+    
+    <!-- Sivun alaosan tilastot -->
+    <div class="alatiedot">
+        <div class="kavijalaskuri">
+            <div>Sivua on katsottu</div>
+            <span class="luku" id="kavijat">0</span>
+            <div>kertaa</div>
+        </div>
+        <div class="tilastot">
+            <span>🖼️ Kuvia: 36</span>
+            <span>📅 Päivitetty: 27.2.2026</span>
+        </div>
+    </div>
     
     <!-- Lightbox -->
     <div class="lightbox" id="lightbox">
@@ -337,7 +345,7 @@
         
         let nykyinenKuvaIndex = 0;
         
-        // Kävijälaskuri (tallentuu selaimen muistiin)
+        // Kävijälaskuri
         function paivitaKavijalaskuri() {
             let kavijat = localStorage.getItem('mlhGalleriaKavijat');
             if (!kavijat) {
@@ -347,12 +355,6 @@
             localStorage.setItem('mlhGalleriaKavijat', kavijat);
             document.getElementById('kavijat').textContent = kavijat.toLocaleString('fi-FI');
         }
-        
-        // Huom: Tämä laskee vain tämän selaimen käynnistyksiä
-        // Oikeaan kävijämäärään tarvittaisiin ulkoinen palvelu kuten:
-        // - Google Analytics
-        // - StatCounter
-        // - tai yksinkertainen API (esim. CountAPI)
         
         paivitaKavijalaskuri();
         
