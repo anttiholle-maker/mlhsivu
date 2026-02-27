@@ -22,7 +22,86 @@
             text-align: center;
             color: white;
             font-size: 2.5em;
-            margin-bottom: 40px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        /* Taiteilijan tiedot */
+        .taiteilija {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            backdrop-filter: blur(10px);
+        }
+        
+        .taiteilija h2 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .taiteilija .kuvaus {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+        
+        .linkit {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .linkit a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        .linkit a:hover {
+            background: rgba(255,255,255,0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        /* Tilastot */
+        .tilastot {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .tilastot span {
+            margin: 0 15px;
+        }
+        
+        /* Kävijälaskuri */
+        .kavijalaskuri {
+            text-align: center;
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+        }
+        
+        .kavijalaskuri .luku {
+            font-size: 2em;
+            font-weight: bold;
+            color: #ffd700;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
         
@@ -162,10 +241,73 @@
             from { transform: scale(0.8); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
         }
+        
+        /* Responsiivisuus */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .taiteilija h2 {
+                font-size: 1.4em;
+            }
+            
+            .linkit {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .linkit a {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .galleria {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 15px;
+            }
+            
+            .kuva img {
+                height: 150px;
+            }
+        }
     </style>
 </head>
 <body>
     <h1>📸 MLH Galleria</h1>
+    
+    <!-- Taiteilijan tiedot -->
+    <div class="taiteilija">
+        <h2>Taiteilija Marja-Leena Holopainen</h2>
+        <p class="kuvaus">
+            Marja-Leena "MLH" Holopainen oli rakastettu taiteilija, jonka teokset 
+            elävät muistossamme. Tämä galleria esittelee hänen upeita töitään.
+        </p>
+        <div class="linkit">
+            <a href="https://www.kuukkeli.com/paikallisia-uutisia/taiteilija-marjaleena-mlh-holopaisen-muistolle-6.153.29378.83f9506578" target="_blank">
+                📰 Kuukkeli - Muistokirjoitus
+            </a>
+            <a href="https://www.ts.fi/a/1074058169" target="_blank">
+                📰 Turun Sanomat
+            </a>
+            <a href="https://www.kuukkeli.com/paikallisia-uutisia/taiteilija-marjaleena-mlh-holopaisen-muistolle-6.153.29378.83f9506578" target="_blank">
+                📰 Lisätietoja Kuukkelissa
+            </a>
+        </div>
+    </div>
+    
+    <!-- Kävijälaskuri -->
+    <div class="kavijalaskuri">
+        <div>Sivua on katsottu</div>
+        <div class="luku" id="kavijat">0</div>
+        <div>kertaa</div>
+    </div>
+    
+    <!-- Tilastot -->
+    <div class="tilastot">
+        <span>🖼️ Kuvia: 36</span>
+        <span>📅 Päivitetty: 27.2.2026</span>
+    </div>
     
     <div class="galleria" id="galleria"></div>
     
@@ -194,6 +336,25 @@
         ];
         
         let nykyinenKuvaIndex = 0;
+        
+        // Kävijälaskuri (tallentuu selaimen muistiin)
+        function paivitaKavijalaskuri() {
+            let kavijat = localStorage.getItem('mlhGalleriaKavijat');
+            if (!kavijat) {
+                kavijat = 0;
+            }
+            kavijat = parseInt(kavijat) + 1;
+            localStorage.setItem('mlhGalleriaKavijat', kavijat);
+            document.getElementById('kavijat').textContent = kavijat.toLocaleString('fi-FI');
+        }
+        
+        // Huom: Tämä laskee vain tämän selaimen käynnistyksiä
+        // Oikeaan kävijämäärään tarvittaisiin ulkoinen palvelu kuten:
+        // - Google Analytics
+        // - StatCounter
+        // - tai yksinkertainen API (esim. CountAPI)
+        
+        paivitaKavijalaskuri();
         
         // Luo galleria
         kuvaNimet.forEach((nimi, index) => {
@@ -243,7 +404,7 @@
             paivitaLightbox();
         }
         
-        // Sulje lightbox ESC-näppäimellä
+        // Näppäimistöohjaus
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') suljeLightbox();
             if (e.key === 'ArrowLeft') vaihdaKuva(-1);
