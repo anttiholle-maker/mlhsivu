@@ -13,21 +13,13 @@
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(180deg, 
-                #87CEEB 0%,      /* Vaaleansininen taivas */
-                #B0E0E6 20%,     /* Vaalea meri */
-                #4682B4 40%,     /* Sininen meri */
-                #1E90FF 60%,     /* Kirkas sininen */
-                #006994 80%,     /* Syvä sininen */
-                #004d7a 100%     /* Tumman sininen */
-            );
             min-height: 100vh;
             padding: 40px 20px;
             position: relative;
-            overflow-x: hidden;
+            background: #1a1a2e;
         }
         
-        /* Aaltojen animaatio */
+        /* Revontulikuva taustana */
         body::before {
             content: '';
             position: fixed;
@@ -35,31 +27,30 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
-                radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.3) 0%, transparent 50%),
-                repeating-linear-gradient(
-                    90deg,
-                    transparent,
-                    transparent 50px,
-                    rgba(255,255,255,0.1) 50px,
-                    rgba(255,255,255,0.1) 100px
-                );
-            animation: aallot 8s ease-in-out infinite;
-            pointer-events: none;
+            background-image: url('https://raw.githubusercontent.com/anttiholle-maker/mlhsivu/main/kuvat/tausta.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             z-index: 0;
         }
         
-        @keyframes aallot {
-            0%, 100% { transform: translateX(0) translateY(0); }
-            25% { transform: translateX(-10px) translateY(5px); }
-            50% { transform: translateX(0) translateY(10px); }
-            75% { transform: translateX(10px) translateY(5px); }
+        /* Tummennuskerros kuvan päälle */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
         }
         
-        /* Pääsisältö aaltojen päällä */
+        /* Pääsisältö */
         h1, .taiteilija, .galleria, .alatiedot {
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
         
         h1 {
@@ -67,7 +58,7 @@
             color: white;
             font-size: 2.5em;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
         }
         
         /* Taiteilijan tiedot */
@@ -76,7 +67,7 @@
             color: white;
             margin-bottom: 30px;
             padding: 20px;
-            background: rgba(255,255,255,0.15);
+            background: rgba(0,0,0,0.5);
             border-radius: 15px;
             max-width: 800px;
             margin-left: auto;
@@ -88,7 +79,7 @@
         .taiteilija h2 {
             font-size: 1.8em;
             margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
         }
         
         .taiteilija .kuvaus {
@@ -122,17 +113,6 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
         
-        /* CV-nappi samanlainen kuin muut */
-        .cv-nappi {
-            background: rgba(255,255,255,0.2) !important;
-            border: 1px solid rgba(255,255,255,0.3) !important;
-            font-weight: normal;
-        }
-        
-        .cv-nappi:hover {
-            background: rgba(255,255,255,0.4) !important;
-        }
-        
         .galleria {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -142,10 +122,10 @@
         }
         
         .kuva {
-            background: rgba(255,255,255,0.9);
+            background: rgba(255,255,255,0.95);
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             transition: transform 0.3s ease;
             cursor: pointer;
         }
@@ -186,7 +166,7 @@
             color: white;
             margin-top: 50px;
             padding: 30px;
-            background: rgba(255,255,255,0.15);
+            background: rgba(0,0,0,0.5);
             border-radius: 15px;
             max-width: 600px;
             margin-left: auto;
@@ -203,7 +183,7 @@
             font-size: 2.5em;
             font-weight: bold;
             color: #ffd700;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
             display: block;
             margin: 10px 0;
         }
@@ -225,7 +205,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.95);
             z-index: 1000;
             justify-content: center;
             align-items: center;
@@ -241,7 +221,7 @@
             max-height: 90%;
             object-fit: contain;
             border-radius: 10px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
             animation: zoomIn 0.3s ease;
         }
         
@@ -253,7 +233,7 @@
             font-size: 50px;
             cursor: pointer;
             transition: transform 0.2s;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
         }
         
         .lightbox .sulje:hover {
@@ -270,7 +250,7 @@
             cursor: pointer;
             padding: 20px;
             transition: transform 0.2s;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
             user-select: none;
         }
         
@@ -294,7 +274,7 @@
             transform: translateX(-50%);
             color: white;
             font-size: 1.2em;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
         }
         
         @keyframes fadeIn {
@@ -358,7 +338,7 @@
             <a href="https://www.kuukkeli.com/paikallisia-uutisia/velhotaulut-etsivat-ostajaa-6.153.28332.5af217dc29" target="_blank">
                 Kuukkeli
             </a>
-            <a href="cv.pdf" target="_blank" class="cv-nappi">
+            <a href="cv.pdf" target="_blank">
                 CV
             </a>
         </div>
