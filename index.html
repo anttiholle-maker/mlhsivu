@@ -13,9 +13,53 @@
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(180deg, 
+                #87CEEB 0%,      /* Vaaleansininen taivas */
+                #B0E0E6 20%,     /* Vaalea meri */
+                #4682B4 40%,     /* Sininen meri */
+                #1E90FF 60%,     /* Kirkas sininen */
+                #006994 80%,     /* Syvä sininen */
+                #004d7a 100%     /* Tumman sininen */
+            );
             min-height: 100vh;
             padding: 40px 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Aaltojen animaatio */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.3) 0%, transparent 50%),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 50px,
+                    rgba(255,255,255,0.1) 50px,
+                    rgba(255,255,255,0.1) 100px
+                );
+            animation: aallot 8s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        @keyframes aallot {
+            0%, 100% { transform: translateX(0) translateY(0); }
+            25% { transform: translateX(-10px) translateY(5px); }
+            50% { transform: translateX(0) translateY(10px); }
+            75% { transform: translateX(10px) translateY(5px); }
+        }
+        
+        /* Pääsisältö aaltojen päällä */
+        h1, .taiteilija, .galleria, .alatiedot {
+            position: relative;
+            z-index: 1;
         }
         
         h1 {
@@ -32,12 +76,13 @@
             color: white;
             margin-bottom: 30px;
             padding: 20px;
-            background: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.15);
             border-radius: 15px;
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
             backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
         }
         
         .taiteilija h2 {
@@ -68,7 +113,7 @@
             background: rgba(255,255,255,0.2);
             border-radius: 25px;
             transition: all 0.3s ease;
-            border: 2px solid rgba(255,255,255,0.3);
+            border: 1px solid rgba(255,255,255,0.3);
         }
         
         .linkit a:hover {
@@ -77,15 +122,15 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
         
-        /* CV-nappi erottuu muista */
+        /* CV-nappi samanlainen kuin muut */
         .cv-nappi {
-            background: rgba(255,215,0,0.3) !important;
-            border-color: rgba(255,215,0,0.5) !important;
-            font-weight: bold;
+            background: rgba(255,255,255,0.2) !important;
+            border: 1px solid rgba(255,255,255,0.3) !important;
+            font-weight: normal;
         }
         
         .cv-nappi:hover {
-            background: rgba(255,215,0,0.5) !important;
+            background: rgba(255,255,255,0.4) !important;
         }
         
         .galleria {
@@ -97,7 +142,7 @@
         }
         
         .kuva {
-            background: white;
+            background: rgba(255,255,255,0.9);
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
@@ -141,12 +186,13 @@
             color: white;
             margin-top: 50px;
             padding: 30px;
-            background: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.15);
             border-radius: 15px;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
             backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
         }
         
         .kavijalaskuri {
@@ -313,7 +359,7 @@
                 Kuukkeli
             </a>
             <a href="cv.pdf" target="_blank" class="cv-nappi">
-                Lataa CV (PDF)
+                CV
             </a>
         </div>
     </div>
