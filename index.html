@@ -19,7 +19,6 @@
             background: #1a1a2e;
         }
         
-        /* Revontulikuva taustana - GitHub-raw linkki */
         body::before {
             content: '';
             position: fixed;
@@ -35,7 +34,6 @@
             z-index: 0;
         }
         
-        /* Tummennuskerros kuvan päälle */
         body::after {
             content: '';
             position: fixed;
@@ -47,7 +45,6 @@
             z-index: 1;
         }
         
-        /* Pääsisältö */
         h1, .taiteilija, .galleria, .alatiedot {
             position: relative;
             z-index: 2;
@@ -61,7 +58,6 @@
             text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
         }
         
-        /* Taiteilijan tiedot */
         .taiteilija {
             text-align: center;
             color: white;
@@ -160,12 +156,12 @@
             justify-content: center;
         }
         
-        /* Sivun alaosan tilastot */
+        /* Sivun alatiedot - ilman kävijälaskuria */
         .alatiedot {
             text-align: center;
             color: white;
             margin-top: 50px;
-            padding: 30px;
+            padding: 20px;
             background: rgba(0,0,0,0.5);
             border-radius: 15px;
             max-width: 600px;
@@ -173,19 +169,6 @@
             margin-right: auto;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.2);
-        }
-        
-        .kavijalaskuri {
-            margin-bottom: 20px;
-        }
-        
-        .kavijalaskuri .luku {
-            font-size: 2.5em;
-            font-weight: bold;
-            color: #ffd700;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-            display: block;
-            margin: 10px 0;
         }
         
         .tilastot {
@@ -197,7 +180,6 @@
             margin: 0 15px;
         }
         
-        /* Lightbox-tyylit */
         .lightbox {
             display: none;
             position: fixed;
@@ -287,7 +269,6 @@
             to { transform: scale(1); opacity: 1; }
         }
         
-        /* Responsiivisuus */
         @media (max-width: 768px) {
             h1 {
                 font-size: 1.8em;
@@ -321,7 +302,6 @@
 <body>
     <h1>MLH Galleria</h1>
     
-    <!-- Taiteilijan tiedot -->
     <div class="taiteilija">
         <h2>Taiteilija Marja-Leena Holopainen</h2>
         <p class="kuvaus">
@@ -346,20 +326,14 @@
     
     <div class="galleria" id="galleria"></div>
     
-    <!-- Sivun alaosan tilastot -->
+    <!-- Sivun alatiedot ilman kävijälaskuria -->
     <div class="alatiedot">
-        <div class="kavijalaskuri">
-            <div>Sivua on katsottu</div>
-            <span class="luku" id="kavijat">0</span>
-            <div>kertaa</div>
-        </div>
         <div class="tilastot">
             <span>Kuvia: 36</span>
             <span>Päivitetty: 27.2.2026</span>
         </div>
     </div>
     
-    <!-- Lightbox -->
     <div class="lightbox" id="lightbox">
         <span class="sulje" onclick="suljeLightbox()">&times;</span>
         <span class="edellinen" onclick="vaihdaKuva(-1)">&#10094;</span>
@@ -385,18 +359,7 @@
         
         let nykyinenKuvaIndex = 0;
         
-        // Kävijälaskuri
-        function paivitaKavijalaskuri() {
-            let kavijat = localStorage.getItem('mlhGalleriaKavijat');
-            if (!kavijat) {
-                kavijat = 0;
-            }
-            kavijat = parseInt(kavijat) + 1;
-            localStorage.setItem('mlhGalleriaKavijat', kavijat);
-            document.getElementById('kavijat').textContent = kavijat.toLocaleString('fi-FI');
-        }
-        
-        paivitaKavijalaskuri();
+        // Kävijälaskuri poistettu
         
         // Luo galleria
         kuvaNimet.forEach((nimi, index) => {
@@ -414,7 +377,6 @@
             document.getElementById('galleria').appendChild(kuvaDiv);
         });
         
-        // Lightbox-funktiot
         function avaaLightbox(index) {
             nykyinenKuvaIndex = index;
             paivitaLightbox();
@@ -446,14 +408,12 @@
             paivitaLightbox();
         }
         
-        // Näppäimistöohjaus
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') suljeLightbox();
             if (e.key === 'ArrowLeft') vaihdaKuva(-1);
             if (e.key === 'ArrowRight') vaihdaKuva(1);
         });
         
-        // Sulje klikkaamalla taustaa
         document.getElementById('lightbox').addEventListener('click', (e) => {
             if (e.target.id === 'lightbox') suljeLightbox();
         });
