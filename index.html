@@ -91,6 +91,7 @@
             justify-content: center;
             gap: 15px;
             margin-top: 15px;
+            margin-bottom: 25px;
         }
         
         .linkit a {
@@ -107,6 +108,39 @@
             background: rgba(255,255,255,0.4);
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        /* Uusi inspiraatio-tekstikehys */
+        .inspiraatio {
+            text-align: left;
+            color: white;
+            margin-top: 25px;
+            padding: 25px;
+            background: rgba(0,0,0,0.4);
+            border-radius: 15px;
+            border-left: 4px solid rgba(255,215,0,0.6);
+            line-height: 1.8;
+        }
+        
+        .inspiraatio h3 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            color: #ffd700;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .inspiraatio p {
+            margin-bottom: 15px;
+            font-size: 1em;
+            opacity: 0.95;
+        }
+        
+        .inspiraatio .englanti {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            font-style: italic;
+            opacity: 0.85;
         }
         
         .galleria {
@@ -156,7 +190,6 @@
             justify-content: center;
         }
         
-        /* Sivun alatiedot - ilman kävijälaskuria */
         .alatiedot {
             text-align: center;
             color: white;
@@ -278,6 +311,11 @@
                 font-size: 1.4em;
             }
             
+            .inspiraatio {
+                padding: 15px;
+                font-size: 0.95em;
+            }
+            
             .linkit {
                 flex-direction: column;
                 align-items: center;
@@ -322,11 +360,35 @@
                 CV
             </a>
         </div>
+        
+        <!-- Uusi inspiraatio-tekstikehys -->
+        <div class="inspiraatio">
+            <h3>Teosten inspiraatio</h3>
+            <p>
+                Teokset ammentavat voimansa Lapin ikiaikaisesta mystiikasta ja mytologiasta. Ne ovat visuaalisia kertomuksia tunturien kätketyistä valtiaista ja muinaisista uskomuksista, jotka ovat vartioineet pohjoisen kairoja vuosituhansia.
+            </p>
+            <p>
+                Vaikuttavuuden kruunaa aito, käsintehty kelokehys. Kehyksen materiaalina on ikihonka – satoja vuosia pystyssä kuivunut Lapin kelopuu, joka kantaa mukanaan pohjoisen sään pieksemää hopeapatinaa. Tämä pinta on luonnon omaa "high-tech" -viimeistelyä: vuosikymmenten ultraviolettisäteily ja arktiset pakkaset ovat muovanneet puun pintaa luoden ainutlaatuisen, silkkisen harmaan suojan, jota on ihmisen mahdotonta jäljitellä teollisesti.
+            </p>
+            <p>
+                Jokainen teos on uniikki pala suomalaista sielunmaisemaa ja tunturien luontoa. Se ei ole pelkkää sisustusta, vaan taiteellinen yhteys arktiseen ikuisuuteen ja luonnon muovaamaan historiaan.
+            </p>
+            <div class="englanti">
+                <p>
+                    Works draw their essence from the primordial mysticism and mythology of Lapland. They serve as visual chronicles of the hidden sovereigns of the fells and the ancestral beliefs that have stood sentinel over the northern wilderness for millennia.
+                </p>
+                <p>
+                    The resonance of each piece is crowned by an authentic, handcrafted frame of Kelo wood. The medium is an ancient, silver-clad pine—a tree that has stood seasoned and dried in the Arctic winds for centuries. This surface represents nature's own "high-tech" alchemy: decades of ultraviolet radiation and sub-zero frosts have transmuted the wood's texture, forging a unique, silken-grey mantle that defies any industrial imitation.
+                </p>
+                <p>
+                    Every creation is a singular fragment of the Finnish soul and the spirit of the northern fells. It is not merely a decorative object, but an artistic conduit to an Arctic eternity and a history sculpted by the hand of nature itself.
+                </p>
+            </div>
+        </div>
     </div>
     
     <div class="galleria" id="galleria"></div>
     
-    <!-- Sivun alatiedot ilman kävijälaskuria -->
     <div class="alatiedot">
         <div class="tilastot">
             <span>Kuvia: 36</span>
@@ -359,9 +421,6 @@
         
         let nykyinenKuvaIndex = 0;
         
-        // Kävijälaskuri poistettu
-        
-        // Luo galleria
         kuvaNimet.forEach((nimi, index) => {
             const kuvaDiv = document.createElement('div');
             kuvaDiv.className = 'kuva';
